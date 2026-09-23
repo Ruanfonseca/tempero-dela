@@ -1,0 +1,111 @@
+import { useState } from 'react'
+import type { Category, MenuItem, PaymentMethod, Size } from '../types'
+import { formatCurrency } from '../utils/format'
+import { CartIcon, LeafIcon } from './Icons'
+
+interface MenuItemCardProps {
+  item: MenuItem
+  category: Category
+  payment: PaymentMethod
+  onAdd: (item: MenuItem, size: Size, quantity: number) => void
+}
+
+const SIZES: Size[] = ['350g', '400g']
+
+export function MenuItemCard({ item, category, payment, onAdd }: MenuItemCardProps) {
+  const [size, setSize] = useState<Size>('350g')
+  const [quantity, setQuantity] = useState(1)
+  const [imageFailed, setImageFailed] = useState(false)
+
+  const pricing = category.prices[size]
+  const price = pricing[payment]
+  const otherLabel = payment === 'avista' ? 'crédito' : 'à vista'
+  const otherPrice = payment === 'avista' ? pricing.credito : pricing.avista
+
+  function handleAdd() {
+    onAdd(item, size, quantity)
+    setQuantity(1)
+  }
+
+  return (
+    <article className="item" aria-labelledby={`item-${item.id}`}>
+      <div className="item__media">
+        {imageFailed ? (
+          <div className="item__media-fallback" aria-hidden="true">
+            <LeafIcon />
+          </div>
+        ) : (
+          <img
+            src={item.image}
+            alt={`Foto ilustrativa: ${item.name}`}
+            loading="lazy"
+            decoding="async"
+            width={640}
+            height={420}
+            onError={() => setImageFailed(true)}
+          />
+        )}
+        <span className="item__number" aria-hidden="true">
+          {item.number}
+        </span>
+      </div>
+
+      <h3 className="item__name" id={`item-${item.id}`}>
+        {item.name}
+      </h3>
+
+      <div className="item__footer">
+        <div
+          className="segmented"
+          role="group"
+          aria-label={`Tamanho da marmita ${item.number}`}
+        >
+          {SIZES.map((s) => (
+            <button
+              key={s}
+              type="button"
+              className="segmented__option"
+              aria-pressed={size === s}
+              onClick={() => setSize(s)}
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+
+        <div className="item__row">
+          <div className="item__price">
+            <strong>{formatCurrency(price)}</strong>
+            <small>
+              {formatCurrency(otherPrice)} no {otherLabel}
+            </small>
+          </div>
+
+          <div className="qty" role="group" aria-label="Quantidade">
+            <button
+              type="button"
+              onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+              aria-label="Diminuir quantidade"
+              disabled={quantity <= 1}
+            >
+              −
+            </button>
+            <output aria-live="polite">{quantity}</output>
+            <button
+              type="button"
+              onClick={() => setQuantity((q) => Math.min(99, q + 1))}
+              aria-label="Aumentar quantidade"
+            >
+              +
+            </button>
+          </div>
+        </div>
+
+        <button type="button" className="btn btn--primary btn--block" onClick={handleAdd}>
+          <CartIcon />
+          Adicionar ao pedido
+        </button>
+      </div>
+    </article>
+  )
+}
