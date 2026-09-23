@@ -1,8 +1,4 @@
-import {
-  MIN_ORDER_QUANTITY,
-  WHATSAPP_DISPLAY,
-  WHATSAPP_NUMBER,
-} from "../data/menu";
+import { MIN_ORDER_QUANTITY } from "../data/menu";
 
 export function Footer() {
   return (
