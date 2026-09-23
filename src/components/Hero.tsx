@@ -37,17 +37,6 @@ export function Hero({ activeCategory }: HeroProps) {
               <MixIcon /> Misture sabores e tamanhos
             </li>
           </ul>
-          <ol className="hero__steps" aria-label="Como pedir">
-            <li>
-              <span>1</span> Monte seu combo
-            </li>
-            <li>
-              <span>2</span> Informe seus dados
-            </li>
-            <li>
-              <span>3</span> Envie pelo WhatsApp
-            </li>
-          </ol>
         </div>
 
         <div
