@@ -1,16 +1,17 @@
-import { CATEGORIES, MIN_ORDER_QUANTITY } from '../data/menu'
-import type { CategoryId, Size } from '../types'
-import { formatCurrency } from '../utils/format'
-import { BoxIcon, MixIcon, TruckIcon } from './Icons'
+import { CATEGORIES, MIN_ORDER_QUANTITY } from "../data/menu";
+import type { CategoryId, Size } from "../types";
+import { formatCurrency } from "../utils/format";
+import { BoxIcon, MixIcon, TruckIcon } from "./Icons";
 
 interface HeroProps {
-  activeCategory: CategoryId
+  activeCategory: CategoryId;
 }
 
-const SIZES: Size[] = ['350g', '400g']
+const SIZES: Size[] = ["350g", "400g"];
 
 export function Hero({ activeCategory }: HeroProps) {
-  const category = CATEGORIES.find((c) => c.id === activeCategory) ?? CATEGORIES[0]
+  const category =
+    CATEGORIES.find((c) => c.id === activeCategory) ?? CATEGORIES[0];
 
   return (
     <section className="hero" id="top">
@@ -21,12 +22,13 @@ export function Hero({ activeCategory }: HeroProps) {
             Monte seu combo, <em>do seu jeito</em>.
           </h1>
           <p>
-            Escolha qualquer combinação de sabores e tamanhos dos cardápios Fitness e Low
-            Carb. Pedido mínimo de {MIN_ORDER_QUANTITY} marmitas e entrega grátis.
+            Escolha qualquer combinação de sabores e tamanhos dos cardápios
+            Fitness e Low Carb. Pedido mínimo de {MIN_ORDER_QUANTITY} marmitas e
+            entrega grátis.
           </p>
           <ul className="hero__badges" aria-label="Condições do pedido">
             <li>
-              <TruckIcon /> Frete grátis
+              <TruckIcon /> Frete grátis (Rio de Janeiro - RJ capital )
             </li>
             <li>
               <BoxIcon /> Mínimo de {MIN_ORDER_QUANTITY} marmitas
@@ -48,7 +50,10 @@ export function Hero({ activeCategory }: HeroProps) {
           </ol>
         </div>
 
-        <div className="price-cards" aria-label={`Tabela de preços - ${category.name}`}>
+        <div
+          className="price-cards"
+          aria-label={`Tabela de preços - ${category.name}`}
+        >
           {SIZES.map((size) => (
             <div className="price-card" key={size}>
               <div className="price-card__size">{size}</div>
@@ -69,5 +74,5 @@ export function Hero({ activeCategory }: HeroProps) {
         </div>
       </div>
     </section>
-  )
+  );
 }
