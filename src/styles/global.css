@@ -332,7 +332,7 @@ a:focus-visible {
   opacity: 0.9;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 768px) {
   .hero__inner {
     grid-template-columns: 1.2fr 1fr;
   }
@@ -1493,4 +1493,338 @@ a:focus-visible {
   background: var(--yellow-soft);
   border-radius: var(--radius-sm);
   padding: 0.55rem 0.75rem;
+}
+
+/* =========================================================
+   Responsividade
+   Breakpoints: celular (< 640), tablet (640–1023), desktop (>= 1024)
+   ========================================================= */
+
+/* Base compartilhada */
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+/* Header mais compacto no celular */
+:root {
+  --header-h: 60px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-h: 68px;
+  }
+}
+
+/* Áreas seguras (iPhone com notch / barra de gestos) */
+.floating-cart {
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+
+.toast {
+  bottom: calc(1.5rem + env(safe-area-inset-bottom));
+}
+
+.drawer {
+  height: 100vh;
+  height: 100dvh;
+}
+
+.drawer__footer {
+  padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
+}
+
+/* Espaço no rodapé para a barra flutuante do carrinho (visível abaixo de 900px) */
+.footer {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 900px) {
+  .footer {
+    padding-bottom: 2.5rem;
+  }
+}
+
+/* ---------- Celular (até 639px) ---------- */
+@media (max-width: 639px) {
+  .container {
+    width: calc(100% - 1.5rem);
+  }
+
+  .cart-button {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .hero {
+    padding: 2rem 0 2.25rem;
+  }
+
+  .hero__kicker {
+    font-size: 0.72rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .hero__steps {
+    gap: 0.5rem 0.9rem;
+  }
+
+  .hero__steps li {
+    font-size: 0.85rem;
+  }
+
+  .hero__badges li {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .price-card {
+    padding: 0.85rem 0.6rem;
+  }
+
+  .price-card__size {
+    font-size: 1.35rem;
+  }
+
+  .price-card__value {
+    font-size: 1.15rem;
+  }
+
+  .tabs {
+    padding: 0.6rem 0;
+  }
+
+  .tab {
+    padding: 0.6rem 1rem;
+    font-size: 0.92rem;
+  }
+
+  .menu {
+    padding: 1.75rem 0 2.5rem;
+  }
+
+  .menu__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .menu__tagline {
+    font-size: 0.9rem;
+  }
+
+  .menu__grid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .item {
+    padding: 0 1rem 1rem;
+  }
+
+  .item__media {
+    margin: 0 -1rem;
+    aspect-ratio: 16 / 9;
+  }
+
+  .item__footer {
+    gap: 0.75rem;
+  }
+
+  .segmented {
+    width: 100%;
+  }
+
+  .drawer__body {
+    padding: 1rem;
+  }
+
+  .drawer__footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .form__section {
+    padding: 0.9rem 0.95rem 1.05rem;
+  }
+
+  .footer {
+    padding-top: 2rem;
+  }
+}
+
+/* Celulares pequenos (até 419px) */
+@media (max-width: 419px) {
+  .brand__sub {
+    display: none;
+  }
+
+  .brand__name {
+    font-size: 1.1rem;
+  }
+
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .form__row--cep {
+    grid-template-columns: 1fr;
+  }
+
+  .payment__options {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-item {
+    grid-template-columns: auto 1fr;
+  }
+
+  .cart-item__price {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .toast {
+    font-size: 0.82rem;
+    padding: 0.65rem 1rem;
+  }
+}
+
+/* Celulares muito estreitos (até 359px) */
+@media (max-width: 359px) {
+  .price-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .item__row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+
+  .item__price {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .qty {
+    justify-content: space-between;
+  }
+
+  .form__row--num {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Tablet (640px a 1023px) ---------- */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .menu__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero__inner {
+    gap: 1.5rem;
+  }
+
+  .drawer {
+    width: min(460px, 100%);
+  }
+}
+
+/* Tablet em retrato: hero em coluna única, mas cards de preço lado a lado */
+@media (min-width: 640px) and (max-width: 767px) {
+  .price-cards {
+    max-width: 520px;
+  }
+}
+
+/* ---------- Desktop (a partir de 1024px) ---------- */
+@media (min-width: 1024px) {
+  .menu__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .item__name {
+    font-size: 1.05rem;
+  }
+
+  .hero {
+    padding: 3.5rem 0 3.75rem;
+  }
+
+  .drawer {
+    width: min(500px, 100%);
+  }
+}
+
+/* Telas largas */
+@media (min-width: 1440px) {
+  .container {
+    width: min(1240px, 100% - 2rem);
+  }
+
+  .menu__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Toque: alvos maiores ---------- */
+@media (pointer: coarse) {
+  .segmented__option {
+    padding: 0.6rem 0.9rem;
+  }
+
+  .qty button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .qty--sm button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .tab {
+    min-height: 44px;
+  }
+
+  .payment__option {
+    min-height: 56px;
+  }
+
+  .link-danger {
+    padding: 0.5rem 0.6rem;
+  }
+
+  .icon-btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ---------- Celular na horizontal (altura curta) ---------- */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero {
+    padding: 1.5rem 0;
+  }
+
+  .hero__steps {
+    display: none;
+  }
+
+  .tabs {
+    position: static;
+  }
+
+  .drawer__header {
+    padding: 0.6rem 1rem;
+  }
 }
