@@ -9,6 +9,118 @@ export interface ImageCredit {
 
 export const IMAGE_CREDITS: ImageCredit[] = [
   {
+    "id": "comum-1",
+    "title": "Kheema (spicy mince)",
+    "author": "rovingI",
+    "license": "CC BY 2.0",
+    "source": "https://flickr.com/photo.gne?id=1949040625"
+  },
+  {
+    "id": "comum-2",
+    "title": "Carne com quiabo",
+    "author": "wagnertamanaha",
+    "license": "CC BY-SA 2.0",
+    "source": "https://flickr.com/photo.gne?id=15714488371"
+  },
+  {
+    "id": "comum-3",
+    "title": "Arroz, couve, feijão",
+    "author": "markhillary",
+    "license": "CC BY 2.0",
+    "source": "https://flickr.com/photo.gne?id=19409372502"
+  },
+  {
+    "id": "comum-4",
+    "title": "Typical Casado or Meal",
+    "author": "puroticorico",
+    "license": "CC BY 2.0",
+    "source": "https://flickr.com/photo.gne?id=329687891"
+  },
+  {
+    "id": "comum-5",
+    "title": "Almoço com arroz, feijão e filés de frango",
+    "author": "Tetizeraz",
+    "license": "CC0 1.0",
+    "source": "https://flickr.com/photo.gne?id=52447933191"
+  },
+  {
+    "id": "comum-6",
+    "title": "Philly Roast Beef Crepe",
+    "author": "elsie.hui",
+    "license": "CC BY 2.0",
+    "source": "https://flickr.com/photo.gne?id=9780596492"
+  },
+  {
+    "id": "comum-7",
+    "title": "Chicken crepes",
+    "author": "stu_spivack",
+    "license": "CC BY-SA 2.0",
+    "source": "https://flickr.com/photo.gne?id=3561438548"
+  },
+  {
+    "id": "comum-8",
+    "title": "Beef Stroganoff",
+    "author": "benketaro",
+    "license": "CC BY 2.0",
+    "source": "https://flickr.com/photo.gne?id=1580394718"
+  },
+  {
+    "id": "comum-9",
+    "title": "Chicken stroganoff",
+    "author": "Flickr user (via Wikimedia Commons)",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Chicken_stroganoff.jpg"
+  },
+  {
+    "id": "comum-10",
+    "title": "Plated Cottage Pie",
+    "author": "avlxyz",
+    "license": "CC BY-SA 2.0",
+    "source": "https://flickr.com/photo.gne?id=4907411988"
+  },
+  {
+    "id": "comum-11",
+    "title": "Shepherd's pie",
+    "author": "WordRidden",
+    "license": "CC BY 2.0",
+    "source": "https://flickr.com/photo.gne?id=4897135759"
+  },
+  {
+    "id": "comum-12",
+    "title": "Fish with tomato sauce",
+    "author": "nyaa_birdies_perch",
+    "license": "CC BY 2.0",
+    "source": "https://flickr.com/photo.gne?id=3752728859"
+  },
+  {
+    "id": "comum-13",
+    "title": "BBQ Chicken Thigh on Rice",
+    "author": "avlxyz",
+    "license": "CC BY-SA 2.0",
+    "source": "https://flickr.com/photo.gne?id=3578075458"
+  },
+  {
+    "id": "comum-24",
+    "title": "Shrimp pasta",
+    "author": "stu_spivack",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Shrimp_pasta_(ML_the_Restaurant).jpg"
+  },
+  {
+    "id": "comum-25",
+    "title": "Garlic chili spaghetti with shrimp and veggies",
+    "author": "PattayaPatrol",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:DFC_4054_Garlic_chili_spaghetti_tossed_with_shrimp_fresh_parsley_and_vibrant_veggies_-_a_simple_savory_seafood_pasta_delight.jpg"
+  },
+  {
+    "id": "comum-26",
+    "title": "Bife à parmegiana com arroz e batata frita",
+    "author": "Márcia Cristina Machado",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Bife_a_parmegiana_com_arroz_e_batata_frita.jpg"
+  },
+  {
     "id": "fitness-1",
     "title": "Spaghetti Bolognese",
     "author": "matsuyuki",
@@ -17,10 +129,10 @@ export const IMAGE_CREDITS: ImageCredit[] = [
   },
   {
     "id": "fitness-2",
-    "title": "Hamburg steak",
-    "author": "Yuya Tamai",
+    "title": "Traditional Kjøttkaker",
+    "author": "meshmar2",
     "license": "CC BY 2.0",
-    "source": "https://flickr.com/photo.gne?id=8502177937"
+    "source": "https://flickr.com/photo.gne?id=264169966"
   },
   {
     "id": "fitness-3",
@@ -136,10 +248,10 @@ export const IMAGE_CREDITS: ImageCredit[] = [
   },
   {
     "id": "lowcarb-6",
-    "title": "Beef crepes",
-    "author": "Maestro_AU",
-    "license": "CC BY 2.0",
-    "source": "https://flickr.com/photo.gne?id=313321430"
+    "title": "Crepes",
+    "author": "stu_spivack",
+    "license": "CC BY-SA 2.0",
+    "source": "https://flickr.com/photo.gne?id=4083091689"
   },
   {
     "id": "lowcarb-7",

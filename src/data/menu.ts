@@ -1,4 +1,10 @@
-import type { Category, CategoryId, MenuItem } from "../types";
+import type {
+  Category,
+  CategoryId,
+  MenuItem,
+  Size,
+  SizePricing,
+} from "../types";
 
 export const WHATSAPP_NUMBER = "5521977187591";
 export const WHATSAPP_DISPLAY = "+55 21 96923-2991";
@@ -9,7 +15,23 @@ export const MIN_ORDER_QUANTITY = 10;
 /** Valor do frete. Entrega gratuita. */
 export const DELIVERY_FEE = 0;
 
+/** Preço especial dos itens 24 a 26 do Cardápio Comum (camarão e parmegiana). */
+const COMUM_PREMIUM_PRICES: Record<Size, SizePricing> = {
+  "350g": { avista: 26, credito: 27 },
+  "400g": { avista: 27, credito: 28 },
+};
+
 export const CATEGORIES: Category[] = [
+  {
+    id: "comum",
+    name: "Cardápio Comum",
+    tagline: "Arroz, feijão e os clássicos do dia a dia",
+    prices: {
+      "350g": { avista: 22, credito: 23 },
+      "400g": { avista: 23, credito: 24 },
+    },
+    note: "Itens 24 a 26 (camarão e parmegiana) têm preço especial: 350g R$ 26,00 e 400g R$ 27,00 à vista.",
+  },
   {
     id: "fitness",
     name: "Cardápio Fitness",
@@ -30,7 +52,28 @@ export const CATEGORIES: Category[] = [
   },
 ];
 
-const fitness: Array<[number, string]> = [
+type Row = [number, string] | [number, string, Record<Size, SizePricing>];
+
+const comum: Row[] = [
+  [1, "Carne moída, arroz, feijão e purê"],
+  [2, "Carne moída, arroz, feijão e quiabo"],
+  [3, "Cubinhos de carne, arroz, feijão e couve"],
+  [4, "Cubinhos de carne, arroz, feijão branco e couve"],
+  [5, "Frango refogado na cebola, arroz e feijão"],
+  [6, "Panqueca com carne e arroz"],
+  [7, "Panqueca com frango e arroz"],
+  [8, "Strogonoff de carne e arroz"],
+  [9, "Strogonoff de frango e arroz"],
+  [10, "Escondidinho com carne e arroz"],
+  [11, "Escondidinho com frango e arroz"],
+  [12, "Filé de peixe ao molho de tomate, arroz e purê"],
+  [13, "Filé de sobrecoxa, arroz, feijão e legumes"],
+  [24, "Espaguete com camarão ao molho branco e mussarela", COMUM_PREMIUM_PRICES],
+  [25, "Espaguete com camarão ao molho de tomate, mussarela e brócolis", COMUM_PREMIUM_PRICES],
+  [26, "Filé à parmegiana com grão-de-bico", COMUM_PREMIUM_PRICES],
+];
+
+const fitness: Row[] = [
   [1, "Macarrão integral à bolonhesa"],
   [2, "Hamburguinho de carne, arroz integral e purê de inhame"],
   [3, "Strogonoff de frango e arroz integral"],
@@ -46,7 +89,7 @@ const fitness: Array<[number, string]> = [
   [15, "Panqueca integral de carne, arroz e berinjela"],
 ];
 
-const lowcarb: Array<[number, string]> = [
+const lowcarb: Row[] = [
   [1, "Purê de inhame, cubinhos de carne, brócolis e couve-flor"],
   [2, "Purê de batata-baroa, carne moída e mix de legumes"],
   [3, "Hamburguinhos, purê de inhame e mix de legumes"],
@@ -63,20 +106,19 @@ const lowcarb: Array<[number, string]> = [
   [14, "Nhoque de batata-doce com carne"],
 ];
 
-function build(
-  categoryId: CategoryId,
-  rows: Array<[number, string]>,
-): MenuItem[] {
-  return rows.map(([number, name]) => ({
+function build(categoryId: CategoryId, rows: Row[]): MenuItem[] {
+  return rows.map(([number, name, prices]) => ({
     id: `${categoryId}-${number}`,
     number,
     categoryId,
     name,
     image: `/images/dishes/${categoryId}-${number}.jpg`,
+    ...(prices ? { prices } : {}),
   }));
 }
 
 export const MENU_ITEMS: MenuItem[] = [
+  ...build("comum", comum),
   ...build("fitness", fitness),
   ...build("lowcarb", lowcarb),
 ];
@@ -85,4 +127,9 @@ export function getCategory(id: CategoryId): Category {
   const category = CATEGORIES.find((c) => c.id === id);
   if (!category) throw new Error(`Categoria desconhecida: ${id}`);
   return category;
+}
+
+/** Tabela de preços efetiva de um item (preço próprio ou o da categoria). */
+export function getItemPrices(item: MenuItem): Record<Size, SizePricing> {
+  return item.prices ?? getCategory(item.categoryId).prices;
 }

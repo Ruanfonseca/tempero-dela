@@ -23,7 +23,7 @@ export function Hero({ activeCategory }: HeroProps) {
           </h1>
           <p>
             Escolha qualquer combinação de sabores e tamanhos dos cardápios
-            Fitness e Low Carb. Pedido mínimo de {MIN_ORDER_QUANTITY} marmitas e
+            Comum, Fitness e Low Carb. Pedido mínimo de {MIN_ORDER_QUANTITY} marmitas e
             entrega grátis.
           </p>
           <ul className="hero__badges" aria-label="Condições do pedido">

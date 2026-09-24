@@ -22,7 +22,7 @@ export function ImageCredits() {
           const licenseUrl = LICENSE_URLS[credit.license]
           return (
             <li key={credit.id}>
-              {item ? `${item.number}. ` : ''}
+              {item ? `${item.name}: ` : ''}
               <a href={credit.source} target="_blank" rel="noopener noreferrer">
                 {credit.title}
               </a>{' '}

@@ -22,7 +22,7 @@ function loadPayment(): PaymentMethod {
 
 export default function App() {
   const cart = useCart()
-  const [activeCategory, setActiveCategory] = useState<CategoryId>('fitness')
+  const [activeCategory, setActiveCategory] = useState<CategoryId>('comum')
   const [payment, setPayment] = useState<PaymentMethod>(loadPayment)
   const [cartOpen, setCartOpen] = useState(false)
   const [toast, setToast] = useState<string | null>(null)

@@ -28,7 +28,7 @@ export function CartList({ items, payment, onUpdateQuantity, onRemove }: CartLis
             />
             <div>
               <p className="cart-item__name">
-                {ci.item.number}. {ci.item.name}
+                {ci.item.name}
               </p>
               <div className="cart-item__meta">
                 <span className="pill">{ci.size}</span>

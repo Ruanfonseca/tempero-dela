@@ -404,6 +404,45 @@ a:focus-visible {
   --menu-muted: #c9d3a8;
 }
 
+/* Cardápio Comum: fundo creme claro, títulos verde e destaques laranja */
+.menu[data-theme='comum'] {
+  background: #fdf7dc;
+  --menu-title: var(--green);
+  --menu-text: var(--green-dark);
+  --menu-muted: #7a8f4e;
+}
+
+.menu[data-theme='comum'] .menu__price-chip {
+  background: var(--green-dark);
+}
+
+.menu__note {
+  margin: -0.5rem 0 1.5rem;
+  padding: 0.7rem 0.95rem;
+  background: var(--white);
+  border-left: 4px solid var(--orange);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: var(--ink);
+  box-shadow: 0 2px 8px rgba(46, 58, 26, 0.06);
+}
+
+.item__badge {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  z-index: 1;
+  background: var(--yellow);
+  color: var(--green-deep);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
 .menu__head {
   display: flex;
   flex-wrap: wrap;
@@ -520,21 +559,16 @@ a:focus-visible {
   opacity: 0.6;
 }
 
-.item__number {
+.item__disclaimer {
   position: absolute;
-  left: 0.9rem;
-  bottom: 0.9rem;
+  left: 0.75rem;
+  bottom: 0.6rem;
   z-index: 1;
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: var(--orange);
-  color: var(--white);
-  font-weight: 800;
-  display: grid;
-  place-items: center;
-  font-size: 1.05rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
 }
 
 .item__name {

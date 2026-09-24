@@ -1,4 +1,4 @@
-import { DELIVERY_FEE, WHATSAPP_NUMBER, getCategory } from '../data/menu'
+import { DELIVERY_FEE, WHATSAPP_NUMBER, getCategory, getItemPrices } from '../data/menu'
 import type { CartItem, CustomerData, PaymentMethod } from '../types'
 import { formatCurrency } from './format'
 
@@ -8,7 +8,7 @@ export const PAYMENT_LABELS: Record<PaymentMethod, string> = {
 }
 
 export function getUnitPrice(cartItem: CartItem, payment: PaymentMethod): number {
-  return getCategory(cartItem.item.categoryId).prices[cartItem.size][payment]
+  return getItemPrices(cartItem.item)[cartItem.size][payment]
 }
 
 export function getCartTotal(items: CartItem[], payment: PaymentMethod): number {

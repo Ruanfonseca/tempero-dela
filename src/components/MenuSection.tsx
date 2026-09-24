@@ -36,12 +36,13 @@ export function MenuSection({ category, payment, onAdd }: MenuSectionProps) {
           </div>
         </div>
 
+        {category.note && <p className="menu__note">{category.note}</p>}
+
         <div className="menu__grid">
           {items.map((item) => (
             <MenuItemCard
               key={item.id}
               item={item}
-              category={category}
               payment={payment}
               onAdd={onAdd}
             />

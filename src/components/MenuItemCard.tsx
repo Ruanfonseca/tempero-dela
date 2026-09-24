@@ -1,24 +1,25 @@
 import { useState } from 'react'
-import type { Category, MenuItem, PaymentMethod, Size } from '../types'
+import { getItemPrices } from '../data/menu'
+import type { MenuItem, PaymentMethod, Size } from '../types'
 import { formatCurrency } from '../utils/format'
 import { CartIcon, LeafIcon } from './Icons'
 
 interface MenuItemCardProps {
   item: MenuItem
-  category: Category
   payment: PaymentMethod
   onAdd: (item: MenuItem, size: Size, quantity: number) => void
 }
 
 const SIZES: Size[] = ['350g', '400g']
 
-export function MenuItemCard({ item, category, payment, onAdd }: MenuItemCardProps) {
+export function MenuItemCard({ item, payment, onAdd }: MenuItemCardProps) {
   const [size, setSize] = useState<Size>('350g')
   const [quantity, setQuantity] = useState(1)
   const [imageFailed, setImageFailed] = useState(false)
 
-  const pricing = category.prices[size]
+  const pricing = getItemPrices(item)[size]
   const price = pricing[payment]
+  const hasSpecialPrice = Boolean(item.prices)
   const otherLabel = payment === 'avista' ? 'crédito' : 'à vista'
   const otherPrice = payment === 'avista' ? pricing.credito : pricing.avista
 
@@ -45,9 +46,8 @@ export function MenuItemCard({ item, category, payment, onAdd }: MenuItemCardPro
             onError={() => setImageFailed(true)}
           />
         )}
-        <span className="item__number" aria-hidden="true">
-          {item.number}
-        </span>
+        {hasSpecialPrice && <span className="item__badge">Preço especial</span>}
+        {!imageFailed && <span className="item__disclaimer">Imagem meramente ilustrativa</span>}
       </div>
 
       <h3 className="item__name" id={`item-${item.id}`}>
@@ -58,7 +58,7 @@ export function MenuItemCard({ item, category, payment, onAdd }: MenuItemCardPro
         <div
           className="segmented"
           role="group"
-          aria-label={`Tamanho da marmita ${item.number}`}
+          aria-label={`Tamanho: ${item.name}`}
         >
           {SIZES.map((s) => (
             <button

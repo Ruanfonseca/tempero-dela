@@ -1,6 +1,22 @@
 // Busca candidatos de fotos (licença livre para uso comercial) via Openverse.
 // Uso: node scripts/search-images.mjs [ids...]
 const queries = {
+  'comum-1': ['rice beans ground beef plate', 'brazilian rice and beans meat'],
+  'comum-2': ['ground beef okra', 'okra stew meat rice'],
+  'comum-3': ['beef rice beans collard greens', 'feijão arroz carne couve'],
+  'comum-4': ['white beans beef rice plate', 'beef stew white beans'],
+  'comum-5': ['chicken onions rice beans', 'frango arroz feijão'],
+  'comum-6': ['beef crepe plate', 'panqueca de carne'],
+  'comum-7': ['chicken crepes plate'],
+  'comum-8': ['beef stroganoff plate'],
+  'comum-9': ['chicken stroganoff plate'],
+  'comum-10': ['escondidinho', "shepherd's pie beef"],
+  'comum-11': ['chicken shepherds pie', 'escondidinho de frango'],
+  'comum-12': ['fish fillet tomato sauce rice', 'baked fish tomato sauce'],
+  'comum-13': ['roasted chicken thigh rice beans', 'chicken thigh plate vegetables'],
+  'comum-24': ['shrimp pasta cream sauce', 'shrimp alfredo spaghetti'],
+  'comum-25': ['shrimp pasta tomato sauce broccoli', 'shrimp spaghetti marinara'],
+  'comum-26': ['bife a parmegiana', 'steak parmigiana'],
   'fitness-1': ['spaghetti bolognese'],
   'fitness-2': ['hamburger steak plate', 'beef patty mashed'],
   'fitness-3': ['chicken stroganoff'],
