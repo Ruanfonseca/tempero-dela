@@ -15,6 +15,10 @@ export const MIN_ORDER_QUANTITY = 10;
 /** Valor do frete. Entrega gratuita. */
 export const DELIVERY_FEE = 0;
 
+/** Área atendida pelos pedidos e mensagem exibida ao cliente. */
+export const DELIVERY_REGION = "município do Rio de Janeiro (capital)";
+export const DELIVERY_NOTICE = `Entregas somente no ${DELIVERY_REGION}.`;
+
 /** Preço especial dos itens 24 a 26 do Cardápio Comum (camarão e parmegiana). */
 const COMUM_PREMIUM_PRICES: Record<Size, SizePricing> = {
   "350g": { avista: 26, credito: 27 },

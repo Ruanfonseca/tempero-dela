@@ -117,36 +117,39 @@ a:focus-visible {
   color: inherit;
 }
 
-.brand__leaf {
-  width: 38px;
-  height: 38px;
-  flex-shrink: 0;
+.brand__logo {
+  display: block;
+  width: auto;
+  height: 42px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: var(--cream);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
 }
 
-.brand__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
+.summary__delivery-area {
+  margin: 0;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--yellow-soft);
+  color: var(--orange-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
 }
 
-.brand__name {
-  font-weight: 800;
-  font-size: 1.25rem;
-  letter-spacing: -0.02em;
-  color: var(--cream);
+.field__hint--error {
+  color: var(--danger);
+  font-weight: 600;
 }
 
-.brand__name span {
-  color: var(--orange);
+.notice--delivery {
+  margin-bottom: 0.15rem;
 }
 
-.brand__sub {
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: var(--green-light);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-top: 0.25rem;
+.notice--delivery strong {
+  display: block;
 }
 
 .cart-button {

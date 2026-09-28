@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
-import { DELIVERY_FEE, WHATSAPP_DISPLAY } from '../data/menu'
+import { DELIVERY_FEE, DELIVERY_NOTICE, WHATSAPP_DISPLAY } from '../data/menu'
 import type { CartItem, CustomerData, PaymentMethod } from '../types'
 import {
   formatCurrency,
@@ -52,6 +52,16 @@ interface ViaCepResponse {
   uf?: string
 }
 
+function isRioDeJaneiroCapital(city: string): boolean {
+  const normalized = city
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim()
+    .toLowerCase()
+
+  return /^rio de janeiro(?:\s*(?:-|\/)\s*rj)?$/.test(normalized)
+}
+
 function validate(data: CustomerData): Errors {
   const errors: Errors = {}
   if (data.name.trim().length < 3) errors.name = 'Informe seu nome completo.'
@@ -60,7 +70,11 @@ function validate(data: CustomerData): Errors {
   if (!data.street.trim()) errors.street = 'Informe a rua.'
   if (!data.number.trim()) errors.number = 'Informe o número.'
   if (!data.neighborhood.trim()) errors.neighborhood = 'Informe o bairro.'
-  if (!data.city.trim()) errors.city = 'Informe a cidade.'
+  if (!data.city.trim()) {
+    errors.city = 'Informe a cidade.'
+  } else if (!isRioDeJaneiroCapital(data.city)) {
+    errors.city = `${DELIVERY_NOTICE} Confira o CEP informado.`
+  }
   return errors
 }
 
@@ -229,6 +243,11 @@ export function CheckoutForm({ items, payment, onSubmit }: CheckoutFormProps) {
         <h3 className="form__section-title" id="sec-address">
           <PinIcon /> Endereço de entrega
         </h3>
+
+        <div className="notice notice--delivery" role="note">
+          <strong>{DELIVERY_NOTICE}</strong>
+          Endereços fora dessa área não poderão concluir o pedido.
+        </div>
 
         <div className="form__row form__row--cep">
           <div className="field">

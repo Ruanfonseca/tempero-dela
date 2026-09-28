@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { DELIVERY_FEE } from '../data/menu'
+import { DELIVERY_FEE, DELIVERY_NOTICE } from '../data/menu'
 import type { CartApi } from '../hooks/useCart'
 import type { CustomerData, PaymentMethod } from '../types'
 import { formatCurrency } from '../utils/format'
@@ -183,6 +183,7 @@ export function CartDrawer({ open, cart, payment, onPaymentChange, onClose }: Ca
                 <span>{formatCurrency(total + DELIVERY_FEE)}</span>
               </div>
             </div>
+            <p className="summary__delivery-area">{DELIVERY_NOTICE}</p>
             {!minimum.reached && (
               <p className="summary__warning" role="status">
                 Faltam {pluralMarmitas(minimum.missing)} para atingir o pedido mínimo de{' '}

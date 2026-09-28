@@ -1,4 +1,4 @@
-import { CATEGORIES, MIN_ORDER_QUANTITY } from "../data/menu";
+import { CATEGORIES, DELIVERY_NOTICE, DELIVERY_REGION, MIN_ORDER_QUANTITY } from "../data/menu";
 import type { CategoryId, Size } from "../types";
 import { formatCurrency } from "../utils/format";
 import { BoxIcon, MixIcon, TruckIcon } from "./Icons";
@@ -24,11 +24,11 @@ export function Hero({ activeCategory }: HeroProps) {
           <p>
             Escolha qualquer combinação de sabores e tamanhos dos cardápios
             Comum, Fitness e Low Carb. Pedido mínimo de {MIN_ORDER_QUANTITY} marmitas e
-            entrega grátis.
+            entrega grátis no {DELIVERY_REGION}.
           </p>
           <ul className="hero__badges" aria-label="Condições do pedido">
             <li>
-              <TruckIcon /> Frete grátis (Rio de Janeiro - RJ capital )
+              <TruckIcon /> {DELIVERY_NOTICE}
             </li>
             <li>
               <BoxIcon /> Mínimo de {MIN_ORDER_QUANTITY} marmitas

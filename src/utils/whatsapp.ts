@@ -1,4 +1,10 @@
-import { DELIVERY_FEE, WHATSAPP_NUMBER, getCategory, getItemPrices } from '../data/menu'
+import {
+  DELIVERY_FEE,
+  DELIVERY_NOTICE,
+  WHATSAPP_NUMBER,
+  getCategory,
+  getItemPrices,
+} from '../data/menu'
 import type { CartItem, CustomerData, PaymentMethod } from '../types'
 import { formatCurrency } from './format'
 
@@ -47,6 +53,7 @@ export function buildOrderMessage(
   lines.push(`*Total de marmitas:* ${totalQty}`)
   lines.push(`*Subtotal:* ${formatCurrency(getCartTotal(items, payment))}`)
   lines.push(`*Entrega:* ${DELIVERY_FEE === 0 ? 'Grátis' : formatCurrency(DELIVERY_FEE)}`)
+  lines.push(`*Área de entrega:* ${DELIVERY_NOTICE}`)
   lines.push(`*Valor total:* ${formatCurrency(getCartTotal(items, payment) + DELIVERY_FEE)}`)
   lines.push(`*Pagamento (na entrega):* ${PAYMENT_LABELS[payment]}`)
   lines.push('')

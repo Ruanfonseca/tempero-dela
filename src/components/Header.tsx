@@ -1,4 +1,4 @@
-import { CartIcon, LeafIcon } from './Icons'
+import { CartIcon } from './Icons'
 
 interface HeaderProps {
   cartCount: number
@@ -10,13 +10,13 @@ export function Header({ cartCount, onOpenCart }: HeaderProps) {
     <header className="header">
       <div className="container header__inner">
         <a className="brand" href="#top" aria-label="Tempero Dela - início">
-          <LeafIcon className="brand__leaf" />
-          <span className="brand__text">
-            <span className="brand__name">
-              Tempero <span>Dela</span>
-            </span>
-            <span className="brand__sub">Marmitas congeladas</span>
-          </span>
+          <img
+            className="brand__logo"
+            src="/images/brand/logo-tempero-dela.png"
+            alt=""
+            width={906}
+            height={330}
+          />
         </a>
 
         <button
