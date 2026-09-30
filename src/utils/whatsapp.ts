@@ -43,7 +43,7 @@ export function buildOrderMessage(
     for (const ci of list) {
       const unit = getUnitPrice(ci, payment)
       lines.push(
-        `• ${ci.quantity}x ${ci.item.number}. ${ci.item.name} (${ci.size}) - ${formatCurrency(unit * ci.quantity)}`,
+        `• ${ci.quantity}x ${ci.item.name} (${ci.size}) - ${formatCurrency(unit * ci.quantity)}`,
       )
     }
   }
