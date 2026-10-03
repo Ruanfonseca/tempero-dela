@@ -7,7 +7,7 @@ export function Footer() {
         <div>
           <h4>Tempero Dela</h4>
           <p>
-            Marmitas congeladas Fitness e Low Carb, feitas com carinho para
+            Marmitas congeladas Comum,Fitness e Low Carb, feitas com carinho para
             facilitar a sua rotina.
           </p>
         </div>
