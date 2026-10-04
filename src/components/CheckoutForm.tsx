@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
-import { DELIVERY_FEE, DELIVERY_NOTICE, WHATSAPP_DISPLAY } from '../data/menu'
+import { DELIVERY_FEE, DELIVERY_NOTICE, ORDER_TERMS } from '../data/menu'
 import type { CartItem, CustomerData, PaymentMethod } from '../types'
 import {
   formatCurrency,
@@ -32,16 +32,12 @@ const EMPTY: CustomerData = {
   notes: '',
 }
 
-const STORAGE_KEY = 'tempero-dela:customer'
+/** Chave usada por versões anteriores; mantida apenas para apagar dados já salvos. */
+const LEGACY_STORAGE_KEY = 'tempero-dela:customer'
 
+/** Os dados pessoais não são persistidos: ficam apenas em memória durante a sessão. */
 function loadCustomer(): CustomerData {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return EMPTY
-    return { ...EMPTY, ...(JSON.parse(raw) as Partial<CustomerData>) }
-  } catch {
-    return EMPTY
-  }
+  return EMPTY
 }
 
 interface ViaCepResponse {
@@ -85,11 +81,18 @@ export function CheckoutForm({ items, payment, onSubmit }: CheckoutFormProps) {
   const [cepStatus, setCepStatus] = useState<'idle' | 'loading' | 'found' | 'notfound' | 'error'>(
     'idle',
   )
+  const [termsAccepted, setTermsAccepted] = useState(false)
+  const [termsError, setTermsError] = useState(false)
   const lastCepLookup = useRef<string>('')
 
+  // Remove dados pessoais que possam ter sido salvos por versões anteriores do site.
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
-  }, [data])
+    try {
+      localStorage.removeItem(LEGACY_STORAGE_KEY)
+    } catch {
+      // Armazenamento indisponível: nada a limpar.
+    }
+  }, [])
 
   // Busca automática do endereço pelo CEP (ViaCEP)
   useEffect(() => {
@@ -159,10 +162,17 @@ export function CheckoutForm({ items, payment, onSubmit }: CheckoutFormProps) {
       neighborhood: true,
       city: true,
     })
+    // O aceite dos termos é obrigatório: sinaliza já na primeira tentativa de envio.
+    setTermsError(!termsAccepted)
+
     const firstError = (Object.keys(nextErrors) as Array<keyof CustomerData>)[0]
     if (firstError) {
       const el = document.getElementById(`field-${firstError}`)
       el?.focus()
+      return
+    }
+    if (!termsAccepted) {
+      document.getElementById('field-terms')?.focus()
       return
     }
     onSubmit(data)
@@ -426,12 +436,47 @@ export function CheckoutForm({ items, payment, onSubmit }: CheckoutFormProps) {
         </ul>
       </div>
 
-      <div className="notice">
-        Ao enviar, o WhatsApp será aberto com o pedido pronto para o número{' '}
-        <strong>{WHATSAPP_DISPLAY}</strong>. Basta confirmar o envio da mensagem.
-      </div>
+      <section className="terms" aria-labelledby="sec-terms">
+        <h4 className="terms__title" id="sec-terms">
+          Termos do pedido
+        </h4>
+        <ul className="terms__list">
+          {ORDER_TERMS.map((term) => (
+            <li key={term}>{term}</li>
+          ))}
+        </ul>
 
-      <button type="submit" className="btn btn--green btn--block btn--lg">
+        <div className="terms__accept">
+          <input
+            id="field-terms"
+            name="terms"
+            type="checkbox"
+            checked={termsAccepted}
+            onChange={(e) => {
+              setTermsAccepted(e.target.checked)
+              if (e.target.checked) setTermsError(false)
+            }}
+            aria-invalid={termsError}
+            aria-describedby={termsError ? 'err-terms' : undefined}
+            required
+          />
+          <label htmlFor="field-terms">
+            Li e aceito os termos acima para finalizar o pedido.
+          </label>
+        </div>
+
+        {termsError && (
+          <p className="field__error" id="err-terms" role="alert">
+            É necessário aceitar os termos para enviar o pedido.
+          </p>
+        )}
+      </section>
+
+      <button
+        type="submit"
+        className="btn btn--green btn--block btn--lg"
+        aria-disabled={!termsAccepted}
+      >
         <WhatsAppIcon />
         Enviar pedido pelo WhatsApp
       </button>

@@ -19,10 +19,27 @@ export const DELIVERY_FEE = 0;
 export const DELIVERY_REGION = "município do Rio de Janeiro (capital)";
 export const DELIVERY_NOTICE = `Entregas somente no ${DELIVERY_REGION}.`;
 
-/** Preço especial dos itens 24 a 26 do Cardápio Comum (camarão e parmegiana). */
+/** Acréscimo aplicado ao pagamento no cartão de crédito. */
+export const CREDIT_SURCHARGE_LABEL = "5%";
+
+/** Condições que o cliente precisa aceitar antes de finalizar o pedido. */
+export const ORDER_TERMS: string[] = [
+  `No pagamento com cartão de crédito será acrescido ${CREDIT_SURCHARGE_LABEL} ao valor do pedido.`,
+  "Em compras parceladas incidem os juros da maquininha.",
+  "Aceitamos voucher ou crédito. Não aceitamos cartões de alimentação e refeição.",
+  `${DELIVERY_NOTICE} A data de entrega das marmitas é combinada com você pelo WhatsApp.`,
+];
+
+/** Preço especial dos pratos de camarão e da parmegiana do Cardápio Comum. */
 const COMUM_PREMIUM_PRICES: Record<Size, SizePricing> = {
   "350g": { avista: 26, credito: 27 },
   "400g": { avista: 27, credito: 28 },
+};
+
+/** Preço dos pratos especiais do Cardápio Comum (feijoada, carne seca, massas e afins). */
+const COMUM_ESPECIAL_PRICES: Record<Size, SizePricing> = {
+  "350g": { avista: 24, credito: 25 },
+  "400g": { avista: 25, credito: 26 },
 };
 
 export const CATEGORIES: Category[] = [
@@ -34,7 +51,7 @@ export const CATEGORIES: Category[] = [
       "350g": { avista: 22, credito: 23 },
       "400g": { avista: 23, credito: 24 },
     },
-    note: "Itens 24 a 26 (camarão e parmegiana) têm preço especial: 350g R$ 26,00 e 400g R$ 27,00 à vista.",
+    note: "Alguns pratos têm preço especial. Feijoada, carne seca, dobradinha, costelinha, bife a rolê, massas com carne, filé de peixe ao alho-poró e os cubinhos com feijão vermelho: 350g R$ 24,00 e 400g R$ 25,00 à vista. Pratos com camarão e a parmegiana: 350g R$ 26,00 e 400g R$ 27,00 à vista.",
   },
   {
     id: "fitness",
@@ -72,17 +89,17 @@ const comum: Row[] = [
   [11, "Escondidinho com frango e arroz"],
   [12, "Filé de peixe ao molho de tomate, arroz e purê"],
   [13, "Filé de sobrecoxa, arroz, feijão e legumes"],
-  [14, "Bife a rolê, arroz, feijão e legumes"],
-  [15, "Feijoada"],
-  [16, "Carne seca com abóbora"],
-  [17, "Carne seca com aipim"],
-  [18, "Costelinha suína com arroz e purê"],
-  [19, "Macarrão talharim com carne assada"],
-  [20, "Filé de peixe ao molho de alho-poró"],
-  [21, "Cubinho de carne, feijão vermelho, arroz e couve"],
-  [27, "Cubinho de frango, feijão vermelho, arroz e couve"],
-  [22, "Espaguete com almôndegas"],
-  [23, "Dobradinha e arroz"],
+  [14, "Bife a rolê, arroz, feijão e legumes", COMUM_ESPECIAL_PRICES],
+  [15, "Feijoada", COMUM_ESPECIAL_PRICES],
+  [16, "Carne seca com abóbora", COMUM_ESPECIAL_PRICES],
+  [17, "Carne seca com aipim", COMUM_ESPECIAL_PRICES],
+  [18, "Costelinha suína com arroz e purê", COMUM_ESPECIAL_PRICES],
+  [19, "Macarrão talharim com carne assada", COMUM_ESPECIAL_PRICES],
+  [20, "Filé de peixe ao molho de alho-poró", COMUM_ESPECIAL_PRICES],
+  [21, "Cubinho de carne, feijão vermelho, arroz e couve", COMUM_ESPECIAL_PRICES],
+  [27, "Cubinho de frango, feijão vermelho, arroz e couve", COMUM_ESPECIAL_PRICES],
+  [22, "Espaguete com almôndegas", COMUM_ESPECIAL_PRICES],
+  [23, "Dobradinha e arroz", COMUM_ESPECIAL_PRICES],
   [24, "Espaguete com camarão ao molho branco e mussarela", COMUM_PREMIUM_PRICES],
   [25, "Espaguete com camarão ao molho de tomate, mussarela e brócolis", COMUM_PREMIUM_PRICES],
   [26, "Filé à parmegiana com grão-de-bico", COMUM_PREMIUM_PRICES],

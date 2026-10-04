@@ -54,6 +54,7 @@ export function buildOrderMessage(
   lines.push(`*Subtotal:* ${formatCurrency(getCartTotal(items, payment))}`)
   lines.push(`*Entrega:* ${DELIVERY_FEE === 0 ? 'Grátis' : formatCurrency(DELIVERY_FEE)}`)
   lines.push(`*Área de entrega:* ${DELIVERY_NOTICE}`)
+  lines.push('*Termos do pedido:* aceitos pelo cliente no site')
   lines.push(`*Valor total:* ${formatCurrency(getCartTotal(items, payment) + DELIVERY_FEE)}`)
   lines.push(`*Pagamento (na entrega):* ${PAYMENT_LABELS[payment]}`)
   lines.push('')

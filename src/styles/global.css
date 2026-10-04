@@ -148,6 +148,73 @@ a:focus-visible {
   margin-bottom: 0.15rem;
 }
 
+.terms {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 1.1rem;
+}
+
+.terms__title {
+  margin: 0 0 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.terms__list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+.terms__accept {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--cream-dark);
+}
+
+.terms__accept input {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  accent-color: var(--green);
+}
+
+.terms__accept input:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 2px;
+}
+
+.terms__accept label {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.terms__accept input[aria-invalid='true'] {
+  outline: 2px solid var(--danger);
+  outline-offset: 2px;
+}
+
+/* Envio indisponível até o aceite dos termos. */
+.btn[aria-disabled='true'] {
+  opacity: 0.55;
+  filter: saturate(0.7);
+}
+
 .notice--delivery strong {
   display: block;
 }
