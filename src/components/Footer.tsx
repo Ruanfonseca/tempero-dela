@@ -1,4 +1,14 @@
-import { DELIVERY_NOTICE, MIN_ORDER_QUANTITY } from "../data/menu";
+import {
+  DELIVERY_NOTICE,
+  MIN_ORDER_QUANTITY,
+  SOCIAL_LINKS,
+} from "../data/menu";
+import { FacebookIcon, InstagramIcon } from "./Icons";
+
+const SOCIAL_ICONS = {
+  facebook: FacebookIcon,
+  instagram: InstagramIcon,
+} as const;
 
 export function Footer() {
   return (
@@ -19,6 +29,32 @@ export function Footer() {
             de sabores e tamanhos. Pagamento na entrega: à vista (Pix ou dinheiro)
             ou cartão de crédito.
           </p>
+        </div>
+        <div>
+          <h4>Redes sociais</h4>
+          <ul className="social" aria-label="Perfis do Tempero Dela nas redes sociais">
+            {SOCIAL_LINKS.map((social) => {
+              const Icon = SOCIAL_ICONS[social.id];
+              return (
+                <li key={social.id}>
+                  <a
+                    className="social__link"
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="social__icon">
+                      <Icon />
+                    </span>
+                    <span className="social__text">
+                      <strong>{social.name}</strong>
+                      <small>{social.handle}</small>
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
         </div>
         <p className="footer__copy">
           © {new Date().getFullYear()} Tempero Dela. Todos os direitos

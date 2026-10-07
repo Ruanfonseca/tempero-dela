@@ -9,6 +9,29 @@ import type {
 export const WHATSAPP_NUMBER = "5521977187591";
 export const WHATSAPP_DISPLAY = "+55 21 96923-2991";
 
+/** Perfis oficiais nas redes sociais. */
+export interface SocialLink {
+  id: "facebook" | "instagram";
+  name: string;
+  handle: string;
+  url: string;
+}
+
+export const SOCIAL_LINKS: SocialLink[] = [
+  {
+    id: "instagram",
+    name: "Instagram",
+    handle: "@tempero.dela",
+    url: "https://www.instagram.com/tempero.dela/",
+  },
+  {
+    id: "facebook",
+    name: "Facebook",
+    handle: "/tdedela",
+    url: "https://www.facebook.com/tdedela",
+  },
+];
+
 /** Quantidade mínima de marmitas por pedido (qualquer combinação de sabores e tamanhos). */
 export const MIN_ORDER_QUANTITY = 10;
 
