@@ -6,8 +6,8 @@ import type {
   SizePricing,
 } from "../types";
 
-export const WHATSAPP_NUMBER = "5521977187591";
-export const WHATSAPP_DISPLAY = "+55 21 96923-2991";
+export const WHATSAPP_NUMBER = "5521968582159";
+export const WHATSAPP_DISPLAY = "+5521968582159";
 
 /** Perfis oficiais nas redes sociais. */
 export interface SocialLink {
